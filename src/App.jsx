@@ -5,7 +5,7 @@ import Player from './components/Player';
 import SongCard from './components/SongCard';
 import PlaylistCard from './components/PlaylistCard';
 import PlaylistSidebar from './components/PlaylistSidebar';
-import { songsData, playlistsData } from './data/musicData';
+import MusicData from './data/musicData';
 import './App.css';
 
 function App() {
@@ -63,3 +63,4 @@ function App() {
 }
 
 export default App;
+
