@@ -1,88 +1,67 @@
-// data/musicData.js - VERSIÓN CORREGIDA
-export const songsData = [
-  {
-    id: 1,
-    title: "Blinding Lights",
-    artist: "The Weeknd",
-    duration: "3:22",
-    image: "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=400&h=400&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Levitating",
-    artist: "Dua Lipa",
-    duration: "3:23",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Good 4 U",
-    artist: "Olivia Rodrigo",
-    duration: "2:58",
-    image: "https://images.unsplash.com/photo-1458560871784-56d23406c091?w=400&h=400&fit=crop"
-  },
-  {
-    id: 4,
-    title: "As It Was",
-    artist: "Harry Styles",
-    duration: "2:47",
-    image: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400&h=400&fit=crop"
-  },
-  {
-    id: 5,
-    title: "Save Your Tears",
-    artist: "The Weeknd",
-    duration: "3:35",
-    image: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=400&h=400&fit=crop"
-  },
-  {
-    id: 6,
-    title: "Heat Waves",
-    artist: "Glass Animals",
-    duration: "3:58",
-    image: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=400&h=400&fit=crop"
-  },
-  {
-    id: 7,
-    title: "Peaches",
-    artist: "Justin Bieber",
-    duration: "3:18",
-    image: "https://images.unsplash.com/photo-1506157786151-b8491531f063?w=400&h=400&fit=crop"
-  },
-  {
-    id: 8,
-    title: "Stay",
-    artist: "The Kid LAROI",
-    duration: "2:21",
-    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=400&fit=crop"
-  }
-];
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
+import Player from './components/Player';
+import SongCard from './components/SongCard';
+import PlaylistCard from './components/PlaylistCard';
+import PlaylistSidebar from './components/PlaylistSidebar';
+import { songsData, playlistsData } from './data/musicData'; // ✅ Importación correcta
+import './App.css';
 
-export const playlistsData = [
-  {
-    id: 1,
-    title: "Mix del día",
-    songsCount: "50 canciones",
-    image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=400&h=400&fit=crop"
-  },
-  {
-    id: 2,
-    title: "Rock Clásico",
-    songsCount: "75 canciones",
-    image: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?w=400&h=400&fit=crop"
-  },
-  {
-    id: 3,
-    title: "Chill Vibes",
-    songsCount: "40 canciones",
-    image: "https://images.unsplash.com/photo-1509824227185-9c5a01ceba0d?w=400&h=400&fit=crop"
-  },
-  {
-    id: 4,
-    title: "Workout Mix",
-    songsCount: "60 canciones",
-    image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=400&fit=crop"
-  }
-];
+function App() {
+  const [currentSong, setCurrentSong] = useState(songsData[0]);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlaySong = (song) => {
+    setCurrentSong(song);
+    setIsPlaying(true);
+  };
+
+  return (
+    <div className="app">
+      <Sidebar />
+      
+      <div className="main-content">
+        <Header />
+        
+        <div className="content-wrapper">
+          <Player 
+            currentSong={currentSong} 
+            isPlaying={isPlaying} 
+            setIsPlaying={setIsPlaying}
+          />
+
+          <div className="content-section">
+            <div className="section-header">
+              <h2>Escucha de nuevo</h2>
+              <button className="ver-todo">Ver todo →</button>
+            </div>
+            <div className="songs-list">
+              {songsData.slice(0, 3).map(song => (
+                <SongCard key={song.id} song={song} onPlay={handlePlaySong} layout="horizontal" />
+              ))}
+            </div>
+          </div>
+
+          <div className="content-section">
+            <div className="section-header">
+              <h2>Artistas que sigues</h2>
+              <button className="ver-todo">Ver todo →</button>
+            </div>
+            <div className="songs-list">
+              {songsData.slice(3, 6).map(song => (
+                <SongCard key={song.id} song={song} onPlay={handlePlaySong} layout="horizontal" />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <PlaylistSidebar playlists={playlistsData} />
+    </div>
+  );
+}
+
+export default App;
 
 
