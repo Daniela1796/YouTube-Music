@@ -1,3 +1,4 @@
+// data/musicData.js - VERSIÓN CORREGIDA
 export const songsData = [
   {
     id: 1,
