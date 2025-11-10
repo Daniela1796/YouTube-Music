@@ -1,5 +1,5 @@
-// data/musicData.js - VERSIÓN CORREGIDA
-export const songsData = [
+
+ const songsData = [
   {
     id: 1,
     title: "Blinding Lights",
@@ -58,7 +58,7 @@ export const songsData = [
   }
 ];
 
-export const playlistsData = [
+const playlistsData = [
   {
     id: 1,
     title: "Mix del día",
@@ -84,3 +84,8 @@ export const playlistsData = [
     image: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?w=400&h=400&fit=crop"
   }
 ];
+
+export default {
+  songsData,
+  playlistsData
+};
