@@ -5,7 +5,10 @@ import Player from './components/Player';
 import SongCard from './components/SongCard';
 import PlaylistCard from './components/PlaylistCard';
 import PlaylistSidebar from './components/PlaylistSidebar';
-import { songsData, playlistsData } from './data/musicData'; // ✅ Importación correcta
+import musicData from './data/musicData';
+
+const songsData = musicData.songsData;
+const playlistsData = musicData.playlistsData;
 import './App.css';
 
 function App() {
@@ -63,5 +66,6 @@ function App() {
 }
 
 export default App;
+
 
 
