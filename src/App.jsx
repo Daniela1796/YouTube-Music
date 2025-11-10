@@ -5,14 +5,12 @@ import Player from './components/Player';
 import SongCard from './components/SongCard';
 import PlaylistCard from './components/PlaylistCard';
 import PlaylistSidebar from './components/PlaylistSidebar';
-import musicData from './data/musicData';
-
-const songsData = musicData.songsData;
-const playlistsData = musicData.playlistsData;
+import musicData from './data/musicData';  // ✅ Default import
 import './App.css';
 
 function App() {
-  const [currentSong, setCurrentSong] = useState(songsData[0]);
+  // ✅ Acceder a los datos desde el objeto default
+  const [currentSong, setCurrentSong] = useState(musicData.songsData[0]);
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlaySong = (song) => {
@@ -40,7 +38,7 @@ function App() {
               <button className="ver-todo">Ver todo →</button>
             </div>
             <div className="songs-list">
-              {songsData.slice(0, 3).map(song => (
+              {musicData.songsData.slice(0, 3).map(song => (  // ✅ musicData.songsData
                 <SongCard key={song.id} song={song} onPlay={handlePlaySong} layout="horizontal" />
               ))}
             </div>
@@ -52,7 +50,7 @@ function App() {
               <button className="ver-todo">Ver todo →</button>
             </div>
             <div className="songs-list">
-              {songsData.slice(3, 6).map(song => (
+              {musicData.songsData.slice(3, 6).map(song => (  // ✅ musicData.songsData
                 <SongCard key={song.id} song={song} onPlay={handlePlaySong} layout="horizontal" />
               ))}
             </div>
@@ -60,12 +58,13 @@ function App() {
         </div>
       </div>
 
-      <PlaylistSidebar playlists={playlistsData} />
+      <PlaylistSidebar playlists={musicData.playlistsData} />  {/* ✅ musicData.playlistsData */}
     </div>
   );
 }
 
 export default App;
+
 
 
 
